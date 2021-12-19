@@ -57,11 +57,11 @@ bool datautils::DataWorker::runOnModule(llvm::Module &M){/*{{{*/
                                 func_args[func].push_back(node(&*arg_idx, datautils::getvaluestaticname(&*arg_idx)));
                                 data_flow_edges.push_back(edge(node(&*II, datautils::getvaluestaticname(&*II)), node(&*arg_idx, datautils::getvaluestaticname(&*arg_idx))));
                                 // ///TODO:Use iterations over the arguments of the functions
-                                // for(llvm::Value::use_iterator UI = arg_idx->use_begin(), UE = arg_idx->use_end(); UI != UE; ++UI)
-                                // {
+                                for(llvm::Value::use_iterator UI = arg_idx->use_begin(), UE = arg_idx->use_end(); UI != UE; ++UI)
+                                {
 
-                                //     data_flow_edges.push_back(edge(node(arg_idx, datautils::getvaluestaticname(arg_idx)), node(UI->get(), datautils::getvaluestaticname(UI->get()))));
-                                // }
+                                data_flow_edges.push_back(edge(node(arg_idx, datautils::getvaluestaticname(arg_idx)), node(UI->get(), datautils::getvaluestaticname(UI->get()))));
+                                }
                             }
                         }
                         break;
