@@ -1,0 +1,9 @@
+dependencies:
+    pre:
+        - sudo apt-get install llvm  build-essential
+
+
+test:
+    override:
+      - llvm-config --libs --cflags
+        - make test-vp
